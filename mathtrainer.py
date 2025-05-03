@@ -27,8 +27,7 @@ def kotiki(a, b):
     sz = 45
     dx = (cw-b*sz)//2 if sz * b <= cw else 0
     dy = (ch-a*sz)//2 if sz * a <= ch else 0
-    print(dx,dy)
-    
+   
     img = PhotoImage(file = choice(imgs))
     
     for r in range(a):
