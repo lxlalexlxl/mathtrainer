@@ -27,7 +27,7 @@ def kotiki(a, b):
     sz = 45
     dx = (cw-b*sz)//2 if sz * b <= cw else 0
     dy = (ch-a*sz)//2 if sz * a <= ch else 0
-   
+    
     img = PhotoImage(file = choice(imgs))
     
     for r in range(a):
@@ -40,9 +40,9 @@ def kotiki(a, b):
 def show():
     global a, b
     r1 = reg_1.get()
-    a = randint(r1, 9 if r1 < 5 else r1 + 5)
+    a = randint(r1, 9 if r1 <= 5 else r1 + 5)
     r2 = reg_2.get()
-    b = randint(r2, 9 if r2 < 5 else r2 + 5)
+    b = randint(r2, 9 if r2 <= 5 else r2 + 5)
 
     s = str(a) + " · " + str(b) + " ="
     
@@ -89,10 +89,10 @@ f.write(name)
 f.close()
 
 reg_1 = Scale(root, from_=1, to=9, length = ch)
-reg_1.grid(row = 0, column = 0, rowspan = 2)
+reg_1.grid(row = 1, column = 0)
 
 reg_2 = Scale(root, from_=1, to=9, length = ch)
-reg_2.grid(row = 0, column = 3, rowspan = 2)
+reg_2.grid(row = 1, column = 3)
 
 cnv = Canvas(width = cw, height = ch)
 cnv.grid(row = 1, column = 1, columnspan = 2, padx = 5)
