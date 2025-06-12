@@ -1,18 +1,37 @@
 from tkinter import *
 from tkinter import messagebox
-from tkinter.simpledialog import askstring
+from tkinter.simpledialog import *
 from random import *
 from datetime import datetime
 
-
 root = Tk()
+root.withdraw()
+
+name = askstring('Привіт! :)', 'Хто ти?')
+
+root.deiconify()
 
 a = b = 0
 cw = ch = 450
 imgs = ['cat.png', 'cat1.png', 'cat2.png']
 img = 0
 
-n = datetime.now().isoformat(timespec='minutes') + ".txt"
+testing_time = 300 # секунд
+
+n = str(datetime.now().isoformat(timespec='minutes')) + name + ".txt"
+n = n.replace(':', '')
+print(n)
+
+
+def my_clock():
+    global testing_time
+    testing_time -= 1
+    if testing_time > 0:
+        root.after(1000, my_clock)
+    else:
+        root.withdraw()
+        messagebox.showinfo('Фініш', 'Вітаю! Тестування закінчено')
+        
 
 def tofile(s):
     f = open(n, "a")
@@ -62,7 +81,7 @@ def test(ev):
             ans['fg'] = 'green'
             tofile('\t:)')
             #print('\t:)') # для протоколу
-            messagebox.showinfo('Результат', 'Правильно :)')
+            #messagebox.showinfo('Результат', 'Правильно :)')
             show()
         else:
             ans['fg'] = 'red'
@@ -74,6 +93,7 @@ def test(ev):
     else:
         ans.delete(0, END)
 
+
 lbl = Label(text = "*", font = "Arial, 80")
 lbl.grid(row = 0, column = 1, padx = 5, pady = 5)
 
@@ -81,8 +101,6 @@ ans = Entry(font = "Arial, 80", width = 3)
 ans.grid(row = 0, column = 2, padx = 5)
 
 ans.bind('<Return>', test)
-
-name = askstring('Привіт! :)', 'Хто ти?')
 
 f = open(n, "w")
 f.write(name)
@@ -97,6 +115,7 @@ reg_2.grid(row = 1, column = 3)
 cnv = Canvas(width = cw, height = ch)
 cnv.grid(row = 1, column = 1, columnspan = 2, padx = 5)
 
+my_clock()
 show()
 
 root.mainloop()
