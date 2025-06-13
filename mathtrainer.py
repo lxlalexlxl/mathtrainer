@@ -31,6 +31,7 @@ def my_clock():
     else:
         root.withdraw()
         messagebox.showinfo('Фініш', 'Вітаю! Тестування закінчено')
+        root.destroy()
         
 
 def tofile(s):
@@ -70,6 +71,7 @@ def show():
     
     ans['fg'] = 'black'
     ans.delete(0, END)
+    ans.focus()
 
 
 def test(ev):
